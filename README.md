@@ -133,6 +133,10 @@ python3 -m pip install edge-tts
 ```bash
 wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/chat_agent_stream_vllm.py
 ```
+In addition, you can find both the Transformers version and the standard vLLM version for performance comparison:
+
+- chat_agent_transformers.py
+- chat_agent_vllm.py
 
 ### 3️⃣ **Run** the Chat Agent
 ```bash
