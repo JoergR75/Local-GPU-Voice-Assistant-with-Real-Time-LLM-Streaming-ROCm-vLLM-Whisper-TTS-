@@ -120,7 +120,7 @@ def chat_llama_stream(llm, user_input, history):
     )
 
     sampling_params = SamplingParams(
-        max_tokens=256,
+        max_tokens=160,
         temperature=0.8,
         top_p=0.9,
     )
@@ -182,7 +182,7 @@ if __name__ == "__main__":
     llm = LLM(
         model=MODEL_ID,
         dtype="float16",
-        max_model_len=92000,
+        max_model_len=8096,
     )
 
     # -----------------------------
