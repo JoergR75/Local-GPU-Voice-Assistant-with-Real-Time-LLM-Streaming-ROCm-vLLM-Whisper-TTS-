@@ -59,7 +59,7 @@ SamplingParams(
 
 Tested on:
 
-- AMD Radeon™ AI PRO R9700 (RDNA4) and Radeon™ PRO W7900
+- AMD Radeon™ AI PRO R9700 (RDNA4) and Radeon™ PRO W7900 (RDNA3)
 - ROCm 7.2
 - Ubuntu 22.04 / 24.04
 - PyTorch 2.11 (Preview)
