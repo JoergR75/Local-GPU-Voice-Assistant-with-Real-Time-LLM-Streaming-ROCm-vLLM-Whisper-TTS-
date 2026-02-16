@@ -152,13 +152,27 @@ def text_to_chat_stream(llm, text, history):
     return chat_llama_stream(llm, text, history)
 
 # -----------------------------
-# Speech Input Handler
+# Speech Input Handler (vLLM streaming)
 # -----------------------------
-def speech_to_chat_stream(llm, audio, history):
+def speech_to_chat_stream_and_reset(audio, history):
+    if not audio:
+        yield history, history, gr.update(), gr.update()
+        return
+
+    # Transcribe
     result = whisper_model.transcribe(audio)
     text = result["text"]
 
-    return chat_llama_stream(llm, text, history)
+    # Add user message to history BEFORE streaming
+    history.append({"role": "user", "content": text})
+
+    # Stream using your existing function
+    for new_history, new_state, audio_update in chat_llama_stream(llm, text, history):
+        # Keep mic stable during streaming
+        yield new_history, new_state, audio_update, gr.update()
+
+    # Final step → reset mic buffer but keep button visible
+    yield history, history, audio_update, None
 
 # -----------------------------
 # Main (REQUIRED for vLLM spawn)
@@ -243,15 +257,13 @@ if __name__ == "__main__":
 
         # 2) Stop recording → send speech automatically
         def speech_to_chat_stream(llm, audio, history):
-            result = whisper_model.transcribe(audio)
-            text = result["text"]
-
-            yield from chat_llama_stream(llm, text, history)
+            history, new_state, audio_out = speech_to_chat(audio, history)
+            return history, new_state, audio_out, None  # reset mic
 
         mic.stop_recording(
-            partial(speech_to_chat_stream, llm),
+            speech_to_chat_stream_and_reset,
             inputs=[mic, state],
-            outputs=[chatbot, state, audio_out]
+            outputs=[chatbot, state, audio_out, mic]  # include mic here to keep the button visible
         )
 
     demo.launch(server_name="0.0.0.0", server_port=7860)
