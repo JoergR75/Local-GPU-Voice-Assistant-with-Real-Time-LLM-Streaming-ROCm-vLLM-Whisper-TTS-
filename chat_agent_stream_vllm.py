@@ -65,6 +65,8 @@ from vllm import LLM, SamplingParams
 # Model configuration
 # -----------------------------
 MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
+# MODEL_ID = "Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2"
+# MODEL_ID = "LeoLM/leo-hessianai-13b-chat" # German language model
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 
@@ -77,6 +79,8 @@ whisper_model = whisper.load_model("base")
 # Text to Speech (Edge-TTS)
 # -----------------------------
 VOICE_NAME = "en-US-AriaNeural"
+# VOICE_NAME = "de-DE-KillianNeural"
+# VOICE_NAME = "de-AT-IngridNeural"
 
 async def speak_async(text):
     """Generate speech using edge-tts and save to a temp file"""
