@@ -136,7 +136,7 @@ def chat_llama_stream(llm, user_input, history):
         answer += token
         history[-1]["content"] = answer
 
-        # 🔥 DO NOT reset audio during stream
+        # DO NOT reset audio during stream
         yield history, history, gr.update()
 
     # FINISHED → create TTS
