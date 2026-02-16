@@ -131,7 +131,7 @@ python3 -m pip install edge-tts
 
 ### 4️⃣ **Download** the Chat Agent script
 ```bash
-wget https://raw.githubusercontent.com/JoergR75/Voice-to-Voice-Chat-Agent/refs/heads/main/vLLM/chat_agent_stream_vllm.py
+wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/chat_agent_stream_vllm.py
 ```
 
 ### 3️⃣ **Run** the Chat Agent
