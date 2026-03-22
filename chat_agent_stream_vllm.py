@@ -47,7 +47,7 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-02-15
+# Last Updated:      2026-03-22
 # License:           Personal / Research use
 # ================================================================================================================
 
@@ -181,7 +181,7 @@ if __name__ == "__main__":
 
     llm = LLM(
         model=MODEL_ID,
-        dtype="float16",
+        dtype="bfloat16",
         max_model_len=8096,
     )
 
