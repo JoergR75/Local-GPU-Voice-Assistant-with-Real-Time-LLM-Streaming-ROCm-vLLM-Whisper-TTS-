@@ -126,7 +126,7 @@ def chat_llama_stream(llm, user_input, history):
 
     sampling_params = SamplingParams(
         max_tokens=160,
-        temperature=0.2,
+        temperature=0.3,
         top_p=0.8,
     )
 
