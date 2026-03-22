@@ -82,7 +82,9 @@ whisper_model = whisper.load_model("small")
 # -----------------------------
 # VOICE_NAME = "en-US-AriaNeural"
 # VOICE_NAME = "de-DE-KillianNeural"
-VOICE_NAME = "de-AT-IngridNeural"
+# VOICE_NAME = "de-AT-IngridNeural"
+VOICE_NAME = "de-DE-AmalaNeural"
+# VOICE_NAME = "de-DE-KatjaNeural"
 
 async def speak_async(text):
     """Generate speech using edge-tts and save to a temp file"""
