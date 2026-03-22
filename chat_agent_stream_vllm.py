@@ -64,9 +64,9 @@ from vllm import LLM, SamplingParams
 # -----------------------------
 # Model configuration
 # -----------------------------
-MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
+# MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
+MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
 # MODEL_ID = "Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2"
-# MODEL_ID = "LeoLM/leo-hessianai-13b-chat" # German language model
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 
@@ -182,7 +182,8 @@ if __name__ == "__main__":
     llm = LLM(
         model=MODEL_ID,
         dtype="bfloat16",
-        max_model_len=8096,
+        max_model_len=2048,
+        trust_remote_code=True,
     )
 
     # -----------------------------
