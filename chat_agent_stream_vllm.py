@@ -65,8 +65,8 @@ from vllm import LLM, SamplingParams
 # Model configuration
 # -----------------------------
 # MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
-# MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
-MODEL_ID "chohtet/Qwen2.5-7B-Instruct-H3-VLLM"
+MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
+# MODEL_ID "chohtet/Qwen2.5-7B-Instruct-H3-VLLM"
 # MODEL_ID = "Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2"
 
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
@@ -79,9 +79,9 @@ whisper_model = whisper.load_model("base")
 # -----------------------------
 # Text to Speech (Edge-TTS)
 # -----------------------------
-VOICE_NAME = "en-US-AriaNeural"
+# VOICE_NAME = "en-US-AriaNeural"
 # VOICE_NAME = "de-DE-KillianNeural"
-# VOICE_NAME = "de-AT-IngridNeural"
+VOICE_NAME = "de-AT-IngridNeural"
 
 async def speak_async(text):
     """Generate speech using edge-tts and save to a temp file"""
@@ -102,12 +102,13 @@ def chat_llama_stream(llm, user_input, history):
     messages = []
 
     system_prompt = (
-        "You are Eva, a local AI assistant running on AMD Radeon AI PRO R9700 graphics hardware. "
-        "Your specification is: 32GB frame buffer, 640TB/s memory bandwidth, 128 AI accelerators, 64 compute units, 191 TerraFLOPs floating point 16 Matrix performance. "
-        "Respond with sharp wit and dry humor. Keep replies short, clear, and confident. "
-        "Be helpful first, funny second. "
-        "Occasionally reference speed, efficiency, or running locally when relevant. "
-        "No long explanations unless requested."
+        "You are a local AI assistant running on AMD Ryzen AI Max PRO 390 hardware. "
+        "Respond in plain, natural language suitable for speech synthesis. "
+        "Do not use metaphors, narration, or roleplay. "
+        "Avoid emojis and symbols. "
+        "Keep responses short and factual. "
+        "Be concise and helpful. "
+        "You may use very subtle, dry humor only when it does not affect clarity. "
     )
 
     messages.append({"role": "system", "content": system_prompt})
@@ -183,7 +184,7 @@ if __name__ == "__main__":
     llm = LLM(
         model=MODEL_ID,
         dtype="bfloat16",
-        max_model_len=2048,
+        max_model_len=8096,
         trust_remote_code=True,
     )
 
