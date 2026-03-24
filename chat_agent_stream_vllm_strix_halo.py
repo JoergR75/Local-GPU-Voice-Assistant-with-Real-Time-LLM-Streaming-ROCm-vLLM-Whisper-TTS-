@@ -26,7 +26,7 @@
 #
 # Tested Kernel Versions:
 #   - 5.15.x
-#   - 6.8.x
+#   - 6.8.x & 6.17
 #
 # Supported Hardware:
 #   - AMD ROCm GPUs
