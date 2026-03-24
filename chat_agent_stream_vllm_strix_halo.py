@@ -207,7 +207,7 @@ if __name__ == "__main__":
     # -----------------------------
     # Gradio UI
     # -----------------------------
-    with gr.Blocks(title="🧠 Qwen 3 4B Local AI Agent | AMD ROCm 7") as demo:
+    with gr.Blocks(title="🧠 Qwen3 4B Local AI Agent | AMD ROCm 7") as demo:
         gr.Markdown("""
     # 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS)
     ### 🤖 Sarcastic • 🎙️ Voice-Enabled • ⚡ GPU-Accelerated • 100% local
