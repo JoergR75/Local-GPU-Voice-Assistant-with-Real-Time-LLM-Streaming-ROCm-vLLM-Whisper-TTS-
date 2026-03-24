@@ -35,7 +35,7 @@
 #
 # Software Stack:
 #   - Python 3.10+
-#   - ROCm 6.x+
+#   - ROCm 7.x+
 #   - PyTorch (ROCm build)
 #   - vLLM
 #   - Gradio
