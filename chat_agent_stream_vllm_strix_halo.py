@@ -214,8 +214,8 @@ if __name__ == "__main__":
 
     ## 🧠 Model Stack
     - **LLM:** Qwen 3 4B Instruct
-    - **ASR:** OpenAI Whisper (small, 74M parameters)
-    - **Framework:** PyTorch 2.11 (Preview)
+    - **ASR:** OpenAI Whisper (base, 74M parameters)
+    - **Framework:** PyTorch 2.9.1
     - **Library:** vLLM 0.18
     - **UI:** Gradio Web Interface
 
