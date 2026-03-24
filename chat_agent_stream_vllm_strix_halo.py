@@ -239,7 +239,7 @@ if __name__ == "__main__":
     [![PyTorch](https://img.shields.io/badge/PyTorch-2.11.0%20(Preview)-ee4c2c?logo=pytorch)](https://pytorch.org/get-started/locally/)
     [![Docker](https://img.shields.io/badge/Docker-29.2.0-blue?logo=docker)](https://www.docker.com/)
     [![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-e95420?logo=ubuntu)](https://ubuntu.com/download/server)
-    [![AMD Radeon AI MAX 390](https://img.shields.io/badge/AMD-Radeon%20AI%20PRO%20R9700-8B0000?logo=amd)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html)
+    [![AMD Radeon AI MAX 390](https://img.shields.io/badge/AMD-Ryzen%20AI%20MAX%20390-8B0000?logo=amd)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html)
 
     ### 😏 Warning
     Responses may contain sarcasm, wit, and dangerously high GPU utilization.
