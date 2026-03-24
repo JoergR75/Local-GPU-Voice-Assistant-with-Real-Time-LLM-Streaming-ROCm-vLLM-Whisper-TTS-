@@ -207,13 +207,13 @@ if __name__ == "__main__":
     # -----------------------------
     # Gradio UI
     # -----------------------------
-    with gr.Blocks(title="Qwen 3 4B Local AI Agent | AMD ROCm 7.2") as demo:
+    with gr.Blocks(title="🧠 Qwen 3 4B Local AI Agent | AMD ROCm 7") as demo:
         gr.Markdown("""
     # 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS)
     ### 🤖 Sarcastic • 🎙️ Voice-Enabled • ⚡ GPU-Accelerated • 100% local
 
     ## 🧠 Model Stack
-    - **LLM:** Qwen 3 4B Instruct
+    - **LLM:** Qwen3 4B Instruct
     - **ASR:** OpenAI Whisper (base, 74M parameters)
     - **Framework:** PyTorch 2.9.1
     - **Library:** vLLM 0.18
