@@ -75,7 +75,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 # -----------------------------
 # Whisper (Speech → Text)
 # -----------------------------
-whisper_model = whisper.load_model("base")
+whisper_model = whisper.load_model("small")
 
 # -----------------------------
 # Text to Speech (Edge-TTS)
