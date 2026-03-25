@@ -208,7 +208,7 @@ if __name__ == "__main__":
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
     | **LLM:** Qwen3 4B Instruct  | **System:** AMD Ryzen ^d  AI MAX 390 w/ Radeon 8050S |  ^=^r  Type your message |
-    | **ASR:** Whisper (base)     | **GPU:** Integrated Radeon 8050S                |  ^=^n^y  ^o Or speak directly |
+    | **ASR:** Whisper (small)     | **GPU:** Integrated Radeon 8050S                |  ^=^n^y  ^o Or speak directly |
     | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ^z  Runs fully local |
     | **Inference:** vLLM 0.18    | **OS:** Ubuntu 24.04                            | No cloud required |
     | **UI:** Gradio             |                                                |                  |
