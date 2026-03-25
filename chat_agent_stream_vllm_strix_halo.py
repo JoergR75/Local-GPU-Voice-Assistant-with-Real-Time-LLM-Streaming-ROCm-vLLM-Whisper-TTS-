@@ -207,9 +207,9 @@ if __name__ == "__main__":
 
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
-    | **LLM:** Qwen3 4B Instruct  | **System:** AMD Ryzen ^d  AI MAX 390 w/ Radeon 8050S |  ^=^r  Type your message |
-    | **ASR:** Whisper (small)     | **GPU:** Integrated Radeon 8050S                |  ^=^n^y  ^o Or speak directly |
-    | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ^z  Runs fully local |
+    | **LLM:** Qwen3 4B Instruct  | **System:** AMD Ryzen AI MAX 390 w/ Radeon 8050S |  💬  Type your message |
+    | **ASR:** Whisper (small)     | **GPU:** Integrated Radeon 8050S                |  🎙️  Or speak directly |
+    | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ⚡  Runs fully local |
     | **Inference:** vLLM 0.18    | **OS:** Ubuntu 24.04                            | No cloud required |
     | **UI:** Gradio             |                                                |                  |
     _No cloud. No API keys. Just pure local AMD AI power._
