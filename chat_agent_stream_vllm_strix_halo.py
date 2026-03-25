@@ -47,7 +47,7 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-03-24
+# Last Updated:      2026-03-25
 # License:           Personal / Research use
 # ================================================================================================================
 
@@ -118,12 +118,6 @@ def chat_llama_stream(llm, user_input, history):
         "- Do not include unnecessary explanations unless explicitly requested.\n"
         "- Maintain a neutral, helpful, and professional tone.\n"
         "- Subtle, dry humor is allowed only if it does not reduce clarity.\n\n"
-    
-        "If relevant, you may include the following factual background about Red Bull:\n"
-        "Red Bull is an Austrian energy drink company founded in 1987 by Dietrich Mateschitz, "
-        "inspired by the Thai drink Krating Daeng. It is known for the slogan 'Red Bull gives you wings' "
-        "and for its strong focus on marketing, especially in extreme sports, Formula 1, and soccer. "
-        "In 2025, the company sold over 13.9 billion cans.\n"
     )
 
     messages.append({"role": "system", "content": system_prompt})
@@ -209,26 +203,15 @@ if __name__ == "__main__":
     # -----------------------------
     with gr.Blocks(title="🧠 Qwen3 4B Local AI Agent | AMD ROCm 7") as demo:
         gr.Markdown("""
-    # 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS)
-    ### 🤖 Sarcastic • 🎙️ Voice-Enabled • ⚡ GPU-Accelerated • 100% local
+    #  ^= ^v Local private GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS) on Ryzen AI MAX 390
 
-    ## 🧠 Model Stack
-    - **LLM:** Qwen3 4B Instruct
-    - **ASR:** OpenAI Whisper (base, 74M parameters)
-    - **Framework:** PyTorch 2.9.1
-    - **Library:** vLLM 0.18
-    - **UI:** Gradio Web Interface
-
-    ## 🚀 Hardware & Platform
-    Running fully local on:
-    **AMD Ryzen™ AI MAX 390 w/ Radeon 8050S**
-    Powered by **ROCm 7**
-    Ubuntu 24.04
-
-    ## 🎤 How to Use
-    - 💬 Type your message
-    - 🎙️ Or speak directly
-    - ⚡ Everything runs locally on a single Ryzen™ AI MAX 390 w/ Radeon 8050S
+    |  ^=   **Model Stack** |  ^=^z^` **Hardware & Platform** |  ^=^n  **How to Use** |
+    |------------------|--------------------------|------------------|
+    | **LLM:** Qwen3 4B Instruct  | **System:** AMD Ryzen ^d  AI MAX 390 w/ Radeon 8050S |  ^=^r  Type your message |
+    | **ASR:** Whisper (base)     | **GPU:** Integrated Radeon 8050S                |  ^=^n^y  ^o Or speak directly |
+    | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ^z  Runs fully local |
+    | **Inference:** vLLM 0.18    | **OS:** Ubuntu 24.04                            | No cloud required |
+    | **UI:** Gradio             |                                                |                  |
 
     _No cloud. No API keys. Just pure local AMD AI power._
 
@@ -241,13 +224,12 @@ if __name__ == "__main__":
     [![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-e95420?logo=ubuntu)](https://ubuntu.com/download/server)
     [![AMD Radeon AI MAX 390](https://img.shields.io/badge/AMD-Ryzen%20AI%20MAX%20390-8B0000?logo=amd)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html)
 
-    ### 😏 Warning
-    Responses may contain sarcasm, wit, and dangerously high GPU utilization.
+    ### 😏 Warning - Responses may contain sarcasm, wit, and dangerously high GPU utilization.
     """)
 
         gr.Markdown("Talk or type. Audio runs fully local on one Ryzen(TM) AI MAX 390 w/ Radeon 8050S.")
 
-        chatbot = gr.Chatbot()
+        chatbot = gr.Chatbot(height=200)
         state = gr.State([])
 
         txt = gr.Textbox(
