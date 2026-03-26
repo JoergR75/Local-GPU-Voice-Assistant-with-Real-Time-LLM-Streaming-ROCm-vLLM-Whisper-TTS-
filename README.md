@@ -148,6 +148,10 @@ wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-R
 ```bash
 python3 chat_agent_stream_vllm.py
 ```
+For Ryzen AI MAX 300 series
+```bash
+python3 chat_agent_stream_vllm_strix_halo.py
+```
 
 ### 4️⃣ Launch the Gradio web Agent from another device connected to same network
 First, SSH into the web server and forward port **7860**:
