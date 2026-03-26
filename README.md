@@ -139,6 +139,11 @@ In addition, you can find both the Transformers version and the standard vLLM ve
 - chat_agent_transformers.py
 - chat_agent_vllm.py
 
+For Ryzen AI MAX 300 series (Strix Halo), download the following Python script
+```bash
+wget 
+```
+
 ### 3️⃣ **Run** the Chat Agent
 ```bash
 python3 chat_agent_stream_vllm.py
