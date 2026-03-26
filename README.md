@@ -141,7 +141,7 @@ In addition, you can find both the Transformers version and the standard vLLM ve
 
 For Ryzen AI MAX 300 series (Strix Halo), download the following Python script
 ```bash
-wget 
+wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/chat_agent_stream_vllm_strix_halo.py
 ```
 
 ### 3️⃣ **Run** the Chat Agent
