@@ -80,10 +80,10 @@ whisper_model = whisper.load_model("small")
 # -----------------------------
 # Text to Speech (Edge-TTS)
 # -----------------------------
-# VOICE_NAME = "en-US-AriaNeural"
+VOICE_NAME = "en-US-AriaNeural"
 # VOICE_NAME = "de-DE-KillianNeural"
 # VOICE_NAME = "de-AT-IngridNeural"
-VOICE_NAME = "de-DE-AmalaNeural"
+# VOICE_NAME = "de-DE-AmalaNeural"
 # VOICE_NAME = "de-DE-KatjaNeural"
 
 async def speak_async(text):
