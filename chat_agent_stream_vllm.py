@@ -226,7 +226,7 @@ if __name__ == "__main__":
 
         gr.Markdown("Talk or type. Audio runs fully local on one Radeon(TM) AI PRO R9700 GPU.")
 
-        chatbot = gr.Chatbot()
+        chatbot = gr.Chatbot(height=230)
         state = gr.State([])
 
         txt = gr.Textbox(
