@@ -105,13 +105,18 @@ def chat_llama_stream(llm, user_input, history):
     messages = []
 
     system_prompt = (
-        "You are a local AI assistant running on AMD Ryzen AI Max PRO 390 hardware. "
-        "Respond in plain, natural language suitable for speech synthesis. "
-        "Do not use metaphors, narration, or roleplay. "
-        "Avoid emojis and symbols. "
-        "Keep responses short and factual. "
-        "Be concise and helpful. "
-        "You may use very subtle, dry humor only when it does not affect clarity. "
+        "You are a local AI assistant called Ruby running on AMD Radeon AI PRO R9700 hardware. "
+        "The system has 2 AMD EPYC 9654 CPUs with 128 cores, 1.5 terabytes of system memory, and 2 Radeon AI PRO R9700 PCIe compute accelerators. The maximum FP16 matrix operations are 191 teraflops per second. \n\n"
+
+        "Your task is to respond in plain, natural language suitable for speech synthesis.\n"
+        "Follow these rules:\n"
+        "- Keep responses short, clear, and factual.\n"
+        "- Be concise and directly address the user's question.\n"
+        "- Do not use emojis, special symbols, or formatting artifacts.\n"
+        "- Avoid metaphors, storytelling, or roleplay.\n"
+        "- Do not include unnecessary explanations unless explicitly requested.\n"
+        "- Maintain a neutral, helpful, and professional tone.\n"
+        "- Subtle, dry humor is allowed only if it does not reduce clarity.\n\n"
     )
 
     messages.append({"role": "system", "content": system_prompt})
@@ -194,29 +199,17 @@ if __name__ == "__main__":
     # -----------------------------
     # Gradio UI
     # -----------------------------
-    with gr.Blocks(title="🦙 Llama 3.3 Local AI Agent | AMD ROCm 7.2") as demo:
+    with gr.Blocks(title="🧠 Llama3.3 8B Local AI Agent | AMD ROCm 7.2") as demo:
         gr.Markdown("""
-    # 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS)
-    ### 🤖 Sarcastic • 🎙️ Voice-Enabled • ⚡ GPU-Accelerated • 100% local
+    # 🤖 Local private GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS) on Radeon AI PRO R9700
 
-    ## 🧠 Model Stack
-    - **LLM:** Llama 3.3 8B Instruct
-    - **ASR:** OpenAI Whisper (base, 74M parameters)
-    - **Framework:** PyTorch 2.11 (Preview)
-    - **Library:** vLLM 0.14
-    - **UI:** Gradio Web Interface
-
-    ## 🚀 Hardware & Platform
-    Running fully local on:
-    **AMD Radeon™ AI PRO R9700 (RDNA4)**
-    Powered by **ROCm 7.2**
-    Ubuntu 22.04 / 24.04
-
-    ## 🎤 How to Use
-    - 💬 Type your message
-    - 🎙️ Or speak directly
-    - ⚡ Everything runs locally on a single Radeon™ AI PRO R9700 GPU
-
+    |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
+    |------------------|--------------------------|------------------|
+    | **LLM:** Llama3.3 8B Instruct  | **System:** AMD EPYC 9654 128 core  |  💬  Type your message |
+    | **ASR:** Whisper (small)     | **GPU:** AMD Radeon AI PRO R9700                |  🎙️  Or speak directly |
+    | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7.2                              |  ⚡  Runs fully local |
+    | **Inference:** vLLM 0.14    | **OS:** Ubuntu 24.04                            | No cloud required |
+    | **UI:** Gradio             |                                                |                  |
     _No cloud. No API keys. Just pure local AMD AI power._
 
     ## 🔗 Resources
@@ -228,8 +221,7 @@ if __name__ == "__main__":
     [![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-e95420?logo=ubuntu)](https://ubuntu.com/download/server)
     [![AMD Radeon AI PRO R9700](https://img.shields.io/badge/AMD-RDNA4%20Radeon(TM)%20AI%20PRO%20R9700-8B0000?logo=amd)](https://www.amd.com/en/products/graphics/workstations/radeon-ai-pro/ai-9000-series/amd-radeon-ai-pro-r9700.html)
 
-    ### 😏 Warning
-    Responses may contain sarcasm, wit, and dangerously high GPU utilization.
+    ### 😏 Warning - Responses may contain sarcasm, wit, and dangerously high GPU utilization.
     """)
 
         gr.Markdown("Talk or type. Audio runs fully local on one Radeon(TM) AI PRO R9700 GPU.")
