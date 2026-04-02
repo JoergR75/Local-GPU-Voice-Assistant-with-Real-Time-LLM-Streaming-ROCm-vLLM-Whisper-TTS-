@@ -106,7 +106,7 @@ def chat_llama_stream(llm, user_input, history):
 
     system_prompt = (
         "You are a local AI assistant called Ruby running on AMD Radeon AI PRO R9700 hardware. "
-        "The system has 2 AMD EPYC 9654 CPUs with 128 cores, 1.5 terabytes of system memory, and 2 Radeon AI PRO R9700 PCIe compute accelerators. The maximum FP16 matrix operations are 191 teraflops per second. \n\n"
+        "The system has 2 AMD EPYC 9754 CPUs with 128 cores, 1.5 terabytes of system memory, and 2 Radeon AI PRO R9700 PCIe compute accelerators. The maximum FP16 matrix operations are 191 teraflops per second. \n\n"
 
         "Your task is to respond in plain, natural language suitable for speech synthesis.\n"
         "Follow these rules:\n"
@@ -205,7 +205,7 @@ if __name__ == "__main__":
 
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
-    | **LLM:** Llama3.3 8B Instruct  | **System:** AMD EPYC 9654 128 core  |  💬  Type your message |
+    | **LLM:** Llama3.3 8B Instruct  | **System:** AMD EPYC 9754 128 core  |  💬  Type your message |
     | **ASR:** Whisper (small)     | **GPU:** AMD Radeon AI PRO R9700                |  🎙️  Or speak directly |
     | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7.2                              |  ⚡  Runs fully local |
     | **Inference:** vLLM 0.14    | **OS:** Ubuntu 24.04                            | No cloud required |
