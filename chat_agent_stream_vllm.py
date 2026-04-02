@@ -47,7 +47,7 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-03-22
+# Last Updated:      2026-04-2
 # License:           Personal / Research use
 # ================================================================================================================
 
