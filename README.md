@@ -148,6 +148,10 @@ wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-R
 ```bash
 python3 chat_agent_stream_vllm.py
 ```
+Starting the Llama model, Edge-TTS, and Whisper for the first time will download their weights. This may take 5–10 minutes, depending on your internet connection. 
+
+<img width="851" height="949" alt="image" src="https://github.com/user-attachments/assets/de55543f-a062-419f-8e8d-aacf1e9dd01e" />
+
 For Ryzen AI MAX 300 series
 ```bash
 python3 chat_agent_stream_vllm_strix_halo.py
