@@ -42,11 +42,11 @@ Microphone → Whisper → Qwen3 4B (vLLM with real-time streaming) → Piper-TT
 
 ## ⚙️ Model Configuration
 ```python
-MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
+MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
 
 SamplingParams(
     max_tokens=160,
-    temperature=0.8,
+    temperature=0.2,
     top_p=0.9
 )
 ```
@@ -59,7 +59,7 @@ SamplingParams(
 
 Tested on:
 
-- AMD Ryzen™ AI MAX 390 (Strix Halo)
+- AMD Ryzen™ AI MAX 390 w/ Radeon 8050S (Strix Halo)
 - ROCm 7.2.1
 - Ubuntu 22.04 / 24.04
 - PyTorch 2.11 (Preview)
