@@ -126,9 +126,10 @@ sudo apt install ffmpeg -y
 python3 -m pip install --upgrade pip wheel
 python3 -m pip install gradio
 python3 -m pip install git+https://github.com/openai/whisper.git
-git clone https://github.com/rhasspy/piper.git
-python3 -m pip install piper
-cd /app/piper/
+cd /app
+wget https://github.com/rhasspy/piper/releases/latest/download/piper_linux_x86_64.tar.gz
+tar -xzf piper_linux_x86_64.tar.gz
+cd /app/piper
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
 ```
