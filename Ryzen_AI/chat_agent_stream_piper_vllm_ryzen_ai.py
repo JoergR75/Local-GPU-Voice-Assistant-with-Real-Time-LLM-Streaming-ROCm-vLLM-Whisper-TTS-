@@ -83,14 +83,14 @@ whisper_model = whisper.load_model("small")
 # -----------------------------
 # Select voice
 PIPER_MODEL = "/app/piper/en_US-lessac-medium.onnx"
-# PIPER_MODEL = "./de_DE-thorsten-medium.onnx"
+# PIPER_MODEL = "/app/piper/de_DE-thorsten-medium.onnx"
 
 def speak(text):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
         out_path = f.name
 
     cmd = [
-        "piper",
+        "/app/piper/piper",
         "--model", PIPER_MODEL,
         "--output_file", out_path
     ]
