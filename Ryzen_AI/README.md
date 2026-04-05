@@ -126,8 +126,13 @@ sudo apt install ffmpeg -y
 python3 -m pip install --upgrade pip wheel
 python3 -m pip install gradio
 python3 -m pip install git+https://github.com/openai/whisper.git
-python3 -m pip install asyncio
-python3 -m pip install edge-tts
+git clone https://github.com/rhasspy/piper.git
+cd piper
+pip install -e .
+cd
+cd /app/piper/
+wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx
+wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
 ```
 
 ### 4️⃣ **Download** the Chat Agent script
