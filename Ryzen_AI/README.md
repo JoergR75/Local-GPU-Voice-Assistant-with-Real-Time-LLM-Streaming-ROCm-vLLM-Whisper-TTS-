@@ -143,7 +143,7 @@ wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-R
 
 ### 3️⃣ **Run** the Chat Agent
 ```bash
-python3 hat_agent_stream_piper_vllm_ryzen_ai.py
+python3 chat_agent_stream_piper_vllm_ryzen_ai.py
 ```
 Starting the Qwen3 model, Piper-TTS, and Whisper for the first time will download their weights. This may take 5–10 minutes, depending on your internet connection. 
 
