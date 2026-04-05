@@ -90,7 +90,7 @@ def speak(text):
         out_path = f.name
 
     cmd = [
-        "/app/piper/piper",
+        "piper",
         "--model", PIPER_MODEL,
         "--output_file", out_path
     ]
