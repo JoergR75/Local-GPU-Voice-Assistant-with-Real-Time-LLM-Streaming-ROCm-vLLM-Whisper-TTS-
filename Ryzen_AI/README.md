@@ -132,6 +132,7 @@ tar -xzf piper_linux_x86_64.tar.gz
 cd /app/piper
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
+cd ..
 ```
 
 ### 4️⃣ **Download** the Chat Agent script
