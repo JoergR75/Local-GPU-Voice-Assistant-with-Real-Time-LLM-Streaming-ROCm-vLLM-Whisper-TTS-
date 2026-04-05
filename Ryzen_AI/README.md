@@ -132,30 +132,16 @@ python3 -m pip install edge-tts
 
 ### 4️⃣ **Download** the Chat Agent script
 ```bash
-wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/chat_agent_stream_vllm.py
-```
-In addition, you can find both the Transformers version and the standard vLLM version for performance comparison:
-
-- chat_agent_transformers.py
-- chat_agent_vllm.py
-
-For Ryzen AI MAX 300 series (Strix Halo), download the following Python script
-```bash
-wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/chat_agent_stream_vllm_strix_halo.py
+wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/Ryzen_AI/chat_agent_stream_piper_vllm_ryzen_ai.py
 ```
 
 ### 3️⃣ **Run** the Chat Agent
 ```bash
-python3 chat_agent_stream_vllm.py
+python3 hat_agent_stream_piper_vllm_ryzen_ai.py
 ```
-Starting the Llama model, Edge-TTS, and Whisper for the first time will download their weights. This may take 5–10 minutes, depending on your internet connection. 
+Starting the Qwen3 model, Piper-TTS, and Whisper for the first time will download their weights. This may take 5–10 minutes, depending on your internet connection. 
 
 <img width="851" height="949" alt="image" src="https://github.com/user-attachments/assets/de55543f-a062-419f-8e8d-aacf1e9dd01e" />
-
-For Ryzen AI MAX 300 series
-```bash
-python3 chat_agent_stream_vllm_strix_halo.py
-```
 
 ### 4️⃣ Launch the Gradio web Agent from another device connected to same network
 First, SSH into the web server and forward port **7860**:
