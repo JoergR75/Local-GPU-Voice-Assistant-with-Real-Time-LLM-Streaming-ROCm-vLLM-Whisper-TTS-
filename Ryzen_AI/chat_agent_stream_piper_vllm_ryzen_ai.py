@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # ================================================================================================================
-# Local GPU Voice Assistant (vLLM + Gradio + Whisper-STT + Piper-TTS) optimized for Ryzen AI MAX 390 w/ Radeon 8050S) 32GB
+# Local GPU Voice Assistant (vLLM + Gradio + faster-Whisper-STT + Piper-TTS) optimized for Ryzen AI MAX 390 w/ Radeon 8050S) 32GB
 # ================================================================================================================
 # Fully local, GPU-accelerated AI voice assistant with real-time token streaming.
 # Runs entirely offline on AMD ROCm hardware using:
 #
 #   • vLLM            → fast LLM inference + streaming tokens
 #   • Gradio          → web UI / chat interface
-#   • OpenAI Whisper  → speech-to-text (STT)
+#   • faster-Whisper  → speech-to-text (STT)
 #   • Piper TTS       → text-to-speech (TTS)
 #
 # Features:
@@ -39,7 +39,7 @@
 #   - PyTorch (ROCm build)
 #   - vLLM
 #   - Gradio
-#   - Whisper
+#   - faster-Whisper
 #   - piper-tts
 #   - piper voices (Eng) - https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US
 #
@@ -48,18 +48,17 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-04-06
+# Last Updated:      2026-04-08
 # License:           Personal / Research use
 # ================================================================================================================
 
 import gradio as gr
-import whisper
 import tempfile
 import subprocess
 import threading
 import os
 from functools import partial
-
+from faster_whisper import WhisperModel
 from transformers import AutoTokenizer
 from vllm import LLM, SamplingParams
 
@@ -77,7 +76,10 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 # -----------------------------
 # Whisper (Speech → Text)
 # -----------------------------
-whisper_model = whisper.load_model("base")
+whisper_model = WhisperModel(
+    "base",
+    compute_type="int8"   # "int8" for CPU, "float16" for GPU
+)
 
 # -----------------------------
 # Text to Speech (Piper - FULLY OFFLINE)
@@ -191,9 +193,10 @@ def speech_to_chat_stream_and_reset(audio, history):
         yield history, history, gr.update(), gr.update()
         return
 
-    # Transcribe
-    result = whisper_model.transcribe(audio)
-    text = result["text"]
+    # Transcribe (faster-whisper)
+    segments, info = whisper_model.transcribe(audio)
+
+    text = "".join([seg.text for seg in segments]).strip()
 
     # Add user message to history BEFORE streaming
     history.append({"role": "user", "content": text})
