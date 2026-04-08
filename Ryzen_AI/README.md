@@ -1,4 +1,4 @@
-# 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper-STT + Piper-TTS)
+# 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + faster-Whisper-STT + Piper-TTS)
 
 A fully offline, GPU-accelerated AI voice assistant that streams LLM responses in real time with speech input and output on AMD ROCm hardware.
 
@@ -46,8 +46,8 @@ MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
 
 SamplingParams(
     max_tokens=160,
-    temperature=0.2,
-    top_p=0.9
+    temperature=0.1,
+    top_p=0.8
 )
 ```
 
