@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # ================================================================================================================
-# Local GPU Voice Assistant (vLLM + Gradio + faster-Whisper-STT + Piper-TTS) optimized for Ryzen AI MAX 390 w/ Radeon 8050S) 32GB
+# Local GPU Voice Assistant (vLLM + Gradio + Whisper-STT + Piper-TTS) optimized for Ryzen AI MAX 390 w/ Radeon 8050S) 32GB
 # ================================================================================================================
 # Fully local, GPU-accelerated AI voice assistant with real-time token streaming.
 # Runs entirely offline on AMD ROCm hardware using:
 #
 #   • vLLM            → fast LLM inference + streaming tokens
 #   • Gradio          → web UI / chat interface
-#   • faster-Whisper  → speech-to-text (STT)
+#   • OpenAI Whisper  → speech-to-text (STT)
 #   • Piper TTS       → text-to-speech (TTS)
 #
 # Features:
@@ -39,7 +39,7 @@
 #   - PyTorch (ROCm build)
 #   - vLLM
 #   - Gradio
-#   - faster-Whisper
+#   - Whisper
 #   - piper-tts
 #   - piper voices (Eng) - https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US
 #
@@ -48,7 +48,7 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-04-08
+# Last Updated:      2026-04-06
 # License:           Personal / Research use
 # ================================================================================================================
 
@@ -144,7 +144,7 @@ def chat_llama_stream(llm, user_input, history):
         max_tokens=160,
         temperature=0.1,
         top_p=0.8,
-        #stream=True,
+        stream=True,
     )
 
     answer = ""
@@ -152,8 +152,7 @@ def chat_llama_stream(llm, user_input, history):
     history.append({"role": "assistant", "content": ""})
 
     # STREAM TOKENS
-    for output in llm.generate([prompt], sampling_params):
-
+    for output in llm.generate(prompt, sampling_params):
         token = output.outputs[0].text
         answer += token
         history[-1]["content"] = answer
