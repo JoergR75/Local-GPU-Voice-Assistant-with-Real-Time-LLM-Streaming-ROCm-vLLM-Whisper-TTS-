@@ -56,6 +56,7 @@ import gradio as gr
 import whisper
 import tempfile
 import subprocess
+import threading
 import os
 from functools import partial
 
@@ -76,15 +77,15 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 # -----------------------------
 # Whisper (Speech → Text)
 # -----------------------------
-whisper_model = whisper.load_model("small")
+whisper_model = whisper.load_model("base")
 
 # -----------------------------
 # Text to Speech (Piper - FULLY OFFLINE)
 # -----------------------------
 # Select voice:
-PIPER_MODEL = "/app/piper/en_US-lessac-medium.onnx"
+# PIPER_MODEL = "/app/piper/en_US-lessac-medium.onnx"
 # PIPER_MODEL = "/app/piper/de_DE-thorsten-medium.onnx"
-# PIPER_MODEL = "/app/piper/en_US-amy-medium.onnx"
+PIPER_MODEL = "/app/piper/en_US-amy-medium.onnx"
 
 def speak(text):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
@@ -119,7 +120,8 @@ def chat_llama_stream(llm, user_input, history):
         "Follow these rules:\n"
         "- Keep responses short, clear, and factual.\n"
         "- Be concise and directly address the user's question.\n"
-        "- Do not use emojis, special symbols, or formatting artifacts.\n"
+        "- Do not use emojis, special symbols, or any text formatting.\n"
+        "- Do not use markdown, asterisks, or bold text.\n"
         "- Avoid metaphors, storytelling, or roleplay.\n"
         "- Do not include unnecessary explanations unless explicitly requested.\n"
         "- Maintain a neutral, helpful, and professional tone.\n"
@@ -138,8 +140,9 @@ def chat_llama_stream(llm, user_input, history):
 
     sampling_params = SamplingParams(
         max_tokens=160,
-        temperature=0.2,
-        top_p=0.9,
+        temperature=0.1,
+        top_p=0.8,
+        #stream=True,
     )
 
     answer = ""
@@ -156,11 +159,23 @@ def chat_llama_stream(llm, user_input, history):
         # DO NOT reset audio during stream
         yield history, history, gr.update()
 
-    # FINISHED → create TTS
-    audio_path = speak(answer.strip())
+    # FINISHED → run TTS in background
+    tts_result = {"path": None}
 
-    # only now update audio
-    yield history, history, audio_path
+    def run_tts():
+        tts_result["path"] = speak(answer.strip())
+
+    tts_thread = threading.Thread(target=run_tts)
+    tts_thread.start()
+
+    # Immediately return UI (no audio yet)
+    yield history, history, gr.update()
+
+    # Wait for TTS to finish
+    tts_thread.join()
+
+    # Now send audio
+    yield history, history, tts_result["path"]
 
 # -----------------------------
 # Audio Input Handler
@@ -198,9 +213,10 @@ if __name__ == "__main__":
 
     llm = LLM(
         model=MODEL_ID,
-        gpu_memory_utilization=0.8,
+        gpu_memory_utilization=0.92,
         dtype="bfloat16",
-        max_model_len=4096,
+        max_model_len=2048,
+        enforce_eager=True,
         # trust_remote_code=True,
     )
 
