@@ -135,6 +135,8 @@ cd /app/piper
 chmod +x piper
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx
 wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
+wget https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/amy/medium/en_US-amy-medium.onnx
+wget https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_US/amy/medium/en_US-amy-medium.onnx.json
 cd ..
 ```
 
