@@ -150,6 +150,11 @@ cd ..
 mkdir /app/models/qwen3-4b-instruct-2507
 hf download Qwen/Qwen3-4B-Instruct-2507 --local-dir /app/models/qwen3-4b-instruct-2507
 ```
+or the 8B Llama3.3-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning model
+```bash
+mkdir /app/models/llama3-3-8b-heretic
+hf download DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning --local-dir /app/models/llama3-3-8b-heretic
+```
 
 ### 5️⃣ **Download** the Chat Agent script
 ```bash
