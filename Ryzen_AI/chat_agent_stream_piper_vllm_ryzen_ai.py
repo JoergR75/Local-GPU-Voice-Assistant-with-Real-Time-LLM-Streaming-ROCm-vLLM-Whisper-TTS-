@@ -57,6 +57,7 @@ import tempfile
 import subprocess
 import threading
 import os
+import asyncio
 from functools import partial
 from faster_whisper import WhisperModel
 from transformers import AutoTokenizer
@@ -78,7 +79,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 # -----------------------------
 whisper_model = WhisperModel(
     "base",
-    compute_type="int8"   # "int8" for CPU, "float16" for GPU
+    compute_type="int8"
 )
 
 # -----------------------------
@@ -109,15 +110,14 @@ def speak(text):
     return out_path
 
 # -----------------------------
-# LLM Stream Chat Function with personality (vLLM)
+# LLM Stream Chat Function with personality (vLLM) - Async TTS
 # -----------------------------
-def chat_llama_stream(llm, user_input, history):
+async def chat_llama_stream(llm, user_input, history):
     messages = []
 
     system_prompt = (
         "You are a local AI assistant called Ruby running on AMD Ryzen AI Max 390 hardware. "
         "The system has 12 Zen5 cores, 24 threads, up to 5 GHz frequency, 12 MB L2 cache, and 64 MB L3 cache.\n\n"
-
         "Your task is to respond in plain, natural language suitable for speech synthesis.\n"
         "Follow these rules:\n"
         "- Keep responses short, clear, and factual.\n"
@@ -144,64 +144,73 @@ def chat_llama_stream(llm, user_input, history):
         max_tokens=160,
         temperature=0.1,
         top_p=0.8,
-        stream=True,
+        top_k=50,
+        #stream=True,
     )
 
     answer = ""
-
     history.append({"role": "assistant", "content": ""})
 
-    # STREAM TOKENS
+    # -----------------------------
+    # STREAM LLM TOKENS
+    # -----------------------------
     for output in llm.generate(prompt, sampling_params):
         token = output.outputs[0].text
         answer += token
         history[-1]["content"] = answer
+        yield history, history, gr.update()  # Stream tokens to UI
 
-        # DO NOT reset audio during stream
-        yield history, history, gr.update()
+    # -----------------------------
+    # ASYNC TTS
+    # -----------------------------
+    async def speak_async(text):
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
+            out_path = f.name
 
-    # FINISHED → run TTS in background
-    tts_result = {"path": None}
+        cmd = [
+            "/app/piper/piper",
+            "--model", PIPER_MODEL,
+            "--output_file", out_path
+        ]
 
-    def run_tts():
-        tts_result["path"] = speak(answer.strip())
+        proc = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdin=asyncio.subprocess.PIPE,
+            stdout=asyncio.subprocess.DEVNULL,
+            stderr=asyncio.subprocess.DEVNULL
+        )
 
-    tts_thread = threading.Thread(target=run_tts)
-    tts_thread.start()
+        await proc.communicate(input=text.encode())
+        await proc.wait()
 
-    # Immediately return UI (no audio yet)
-    yield history, history, gr.update()
+        await asyncio.sleep(0.05)
 
-    # Wait for TTS to finish
-    tts_thread.join()
+        return out_path
 
-    # Now send audio
-    yield history, history, tts_result["path"]
+    # Start TTS asynchronously, return immediately
+    tts_task = asyncio.create_task(speak_async(answer.strip()))
+
+    # Await TTS completion and send final audio
+    audio_path = await tts_task
+    yield history, history, audio_path
 
 # -----------------------------
-# Audio Input Handler
+# Speech Input Handler (vLLM streaming) - Async
 # -----------------------------
-def text_to_chat_stream(llm, text, history):
-    return chat_llama_stream(llm, text, history)
-
-# -----------------------------
-# Speech Input Handler (vLLM streaming)
-# -----------------------------
-def speech_to_chat_stream_and_reset(audio, history):
+async def speech_to_chat_stream_and_reset(audio, history):
     if not audio:
         yield history, history, gr.update(), gr.update()
         return
 
     # Transcribe (faster-whisper)
     segments, info = whisper_model.transcribe(audio)
-
     text = "".join([seg.text for seg in segments]).strip()
 
     # Add user message to history BEFORE streaming
     history.append({"role": "user", "content": text})
 
-    # Stream using your existing function
-    for new_history, new_state, audio_update in chat_llama_stream(llm, text, history):
+    # Stream using async LLM stream
+    async for new_history, new_state, audio_update in chat_llama_stream(llm, text, history):
         # Keep mic stable during streaming
         yield new_history, new_state, audio_update, gr.update()
 
@@ -268,19 +277,18 @@ if __name__ == "__main__":
         audio_out = gr.Audio(label="AI Voice Reply", autoplay=True)
 
         # 1) TEXT
-        def text_to_chat_stream(llm, text, history):
-            yield from chat_llama_stream(llm, text, history)
+        async def text_to_chat_stream(llm, text, history):
+            # Add user message first (same as speech path)
+            history.append({"role": "user", "content": text})
+
+            async for new_history, new_state, audio_update in chat_llama_stream(llm, text, history):
+                yield new_history, new_state, audio_update
 
         txt.submit(
             partial(text_to_chat_stream, llm),
             inputs=[txt, state],
             outputs=[chatbot, state, audio_out]
         )
-
-        # 2) Stop recording → send speech automatically
-        def speech_to_chat_stream(llm, audio, history):
-            history, new_state, audio_out = speech_to_chat(audio, history)
-            return history, new_state, audio_out, None  # reset mic
 
         mic.stop_recording(
             speech_to_chat_stream_and_reset,
