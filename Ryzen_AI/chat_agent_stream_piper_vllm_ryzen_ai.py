@@ -236,7 +236,7 @@ if __name__ == "__main__":
     # -----------------------------
     with gr.Blocks(title="🧠 Qwen3 4B Local AI Agent | AMD ROCm 7") as demo:
         gr.Markdown("""
-    # 🤖 Local private GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + Whisper + TTS) on Ryzen AI MAX 390
+    # 🤖 Local private Voice Assistant with LLM Streaming (ROCm + vLLM + Whisper + Piper-TTS) on Ryzen AI MAX 390
 
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
