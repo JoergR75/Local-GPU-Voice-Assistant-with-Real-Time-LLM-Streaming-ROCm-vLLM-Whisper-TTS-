@@ -144,12 +144,18 @@ wget https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_US/libritts/
 cd ..
 ```
 
-### 4️⃣ **Download** the Chat Agent script
+### 4️⃣ **Download** the model - here the Qwen3-4B-Instruct-2507
+```bash
+mkdir /app/models/qwen3-4b-instruct-2507
+hf download Qwen/Qwen3-4B-Instruct-2507 --local-dir /app/models/qwen3-4b-instruct-2507
+```
+
+### 5️⃣ **Download** the Chat Agent script
 ```bash
 wget https://raw.githubusercontent.com/JoergR75/Local-GPU-Voice-Assistant-with-Real-Time-LLM-Streaming-ROCm-vLLM-Whisper-TTS-/refs/heads/main/Ryzen_AI/chat_agent_stream_piper_vllm_ryzen_ai.py
 ```
 
-### 3️⃣ **Run** the Chat Agent
+### 6️⃣ **Run** the Chat Agent
 ```bash
 python3 chat_agent_stream_piper_vllm_ryzen_ai.py
 ```
@@ -157,7 +163,7 @@ Starting the Qwen3 model, Piper-TTS, and Whisper for the first time will downloa
 
 <img width="851" height="949" alt="image" src="https://github.com/user-attachments/assets/de55543f-a062-419f-8e8d-aacf1e9dd01e" />
 
-### 4️⃣ Launch the Gradio web Agent from another device connected to same network
+### 7️⃣ Launch the Gradio web Agent from another device connected to same network
 First, SSH into the web server and forward port **7860**:
 ```echo
 ssh -L 7860:0.0.0.0:7860 ai1@pc1
