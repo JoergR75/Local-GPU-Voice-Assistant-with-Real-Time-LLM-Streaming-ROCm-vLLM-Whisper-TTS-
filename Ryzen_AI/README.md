@@ -48,6 +48,7 @@ SamplingParams(
     max_tokens=512,
     temperature=0.2,
     top_p=0.9
+    top_k=50,
 )
 ```
 
