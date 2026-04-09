@@ -79,7 +79,7 @@ tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
 # -----------------------------
 whisper_model = WhisperModel(
     "base",
-    compute_type="int8"
+    compute_type="int8",
 )
 
 # -----------------------------
@@ -141,7 +141,7 @@ async def chat_llama_stream(llm, user_input, history):
     )
 
     sampling_params = SamplingParams(
-        max_tokens=160,
+        max_tokens=512,
         temperature=0.1,
         top_p=0.8,
         top_k=50,
@@ -227,7 +227,7 @@ if __name__ == "__main__":
         gpu_memory_utilization=0.92,
         dtype="bfloat16",
         max_model_len=2048,
-        enforce_eager=True,
+        enforce_eager=False,
         # trust_remote_code=True,
     )
 
@@ -254,7 +254,6 @@ if __name__ == "__main__":
     [![Ubuntu](https://img.shields.io/badge/Ubuntu-22.04%20%7C%2024.04-e95420?logo=ubuntu)](https://ubuntu.com/download/server)
     [![AMD Radeon AI MAX 390](https://img.shields.io/badge/AMD-Ryzen%20AI%20MAX%20390-8B0000?logo=amd)](https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-390.html)
 
-    ### 😏 Warning - Responses may contain sarcasm, wit, and dangerously high GPU utilization.
     """)
 
         gr.Markdown("Talk or type. Audio runs fully local on one Ryzen(TM) AI MAX 390 w/ Radeon 8050S.")
