@@ -52,9 +52,9 @@ SamplingParams(
 )
 ```
 
-- Short, sharp responses
-- Dry humor personality
-- Optimized for speed and responsiveness
+- Mostly deterministic output
+- Some small variety
+- Output will not exceed 512 tokens
 
 ## 🖥 Hardware & Platform
 
