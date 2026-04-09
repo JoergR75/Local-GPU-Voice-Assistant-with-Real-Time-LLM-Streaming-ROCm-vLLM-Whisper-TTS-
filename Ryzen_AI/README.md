@@ -45,9 +45,9 @@ Microphone → Whisper → Qwen3 4B (vLLM with real-time streaming) → Piper-TT
 MODEL_ID = "unsloth/Qwen3-4B-Instruct-2507"
 
 SamplingParams(
-    max_tokens=160,
-    temperature=0.1,
-    top_p=0.8
+    max_tokens=512,
+    temperature=0.2,
+    top_p=0.9
 )
 ```
 
