@@ -142,23 +142,30 @@ async def chat_llama_stream(llm, user_input, history):
 
     sampling_params = SamplingParams(
         max_tokens=512,
-        temperature=0.1,
-        top_p=0.8,
+        temperature=0.2,
+        top_p=0.9,
         top_k=50,
-        #stream=True,
     )
-
-    answer = ""
-    history.append({"role": "assistant", "content": ""})
 
     # -----------------------------
     # STREAM LLM TOKENS
     # -----------------------------
+    answer = ""
+    full_text = ""
+    history.append({"role": "assistant", "content": ""})
+
     for output in llm.generate(prompt, sampling_params):
-        token = output.outputs[0].text
-        answer += token
+        new_text = output.outputs[0].text
+
+        # Compute only the new delta
+        delta = new_text[len(full_text):]
+        full_text = new_text
+
+        answer += delta
         history[-1]["content"] = answer
-        yield history, history, gr.update()  # Stream tokens to UI
+
+        # Stream tokens to UI
+        yield history, history, gr.update()
 
     # -----------------------------
     # ASYNC TTS
@@ -167,11 +174,7 @@ async def chat_llama_stream(llm, user_input, history):
         with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
             out_path = f.name
 
-        cmd = [
-            "/app/piper/piper",
-            "--model", PIPER_MODEL,
-            "--output_file", out_path
-        ]
+        cmd = ["/app/piper/piper", "--model", PIPER_MODEL, "--output_file", out_path]
 
         proc = await asyncio.create_subprocess_exec(
             *cmd,
@@ -184,13 +187,9 @@ async def chat_llama_stream(llm, user_input, history):
         await proc.wait()
 
         await asyncio.sleep(0.05)
-
         return out_path
 
-    # Start TTS asynchronously, return immediately
     tts_task = asyncio.create_task(speak_async(answer.strip()))
-
-    # Await TTS completion and send final audio
     audio_path = await tts_task
     yield history, history, audio_path
 
