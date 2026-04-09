@@ -1,4 +1,4 @@
-# 🤖 Local GPU Voice Assistant with Real-Time LLM Streaming (ROCm + vLLM + faster-Whisper-STT + Piper-TTS)
+# 🤖 Local private Voice Assistant with LLM Streaming (ROCm + vLLM + faster-Whisper-STT + Piper-TTS)
 
 A fully offline, GPU-accelerated AI voice assistant that streams LLM responses in real time with speech input and output on AMD ROCm hardware.
 
