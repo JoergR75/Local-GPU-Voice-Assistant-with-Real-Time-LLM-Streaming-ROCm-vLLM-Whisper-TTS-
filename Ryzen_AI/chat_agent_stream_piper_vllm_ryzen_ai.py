@@ -66,7 +66,7 @@ from vllm import LLM, SamplingParams
 # -----------------------------
 # Model configuration
 # -----------------------------
-# MODEL_ID = "DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning"
+# MODEL_ID = "/app/models/llama3-3-8b-heretic"
 MODEL_ID = "/app/models/qwen3-4b-instruct-2507"
 # MODEL_ID = "chohtet/Qwen2.5-7B-Instruct-H3-VLLM"
 # MODEL_ID = "predibase/Mistral-7B-Instruct-v0.2-medusa-vllm "
