@@ -75,7 +75,7 @@ MODEL_ID = "/app/models/qwen3-4b-instruct-2507"
 tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, local_files_only=True)
 
 # -----------------------------
-# Whisper (Speech → Text)
+# Faster-Whisper (Speech → Text)
 # -----------------------------
 whisper_model = WhisperModel(
     "base",
