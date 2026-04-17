@@ -155,6 +155,13 @@ or the 8B Llama3.3-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Rea
 mkdir /app/models/llama3-3-8b-heretic
 hf download DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-Opus-High-Reasoning --local-dir /app/models/llama3-3-8b-heretic
 ```
+or Gemma 4 4B
+```bash
+mkdir /app/models/gemma-4-e4b-uncensored
+huggingface-cli download HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive \
+  --local-dir /app/models/gemma-4-e4b-uncensored \
+  --local-dir-use-symlinks False
+```
 
 ### 5️⃣ **Download** the Chat Agent script
 ```bash
