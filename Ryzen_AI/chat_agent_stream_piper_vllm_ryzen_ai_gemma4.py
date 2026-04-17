@@ -67,8 +67,8 @@ from vllm import LLM, SamplingParams
 # Model configuration
 # -----------------------------
 # MODEL_ID = "/app/models/llama3-3-8b-heretic"
-MODEL_ID = "/app/models/qwen3-4b-instruct-2507"
-Mode_ID = ""
+# MODEL_ID = "/app/models/qwen3-4b-instruct-2507"
+MODEL_ID = "/app/models/gemma-4-e4b-uncensored"
 # MODEL_ID = "chohtet/Qwen2.5-7B-Instruct-H3-VLLM"
 # MODEL_ID = "predibase/Mistral-7B-Instruct-v0.2-medusa-vllm "
 # MODEL_ID = "Orenguteng/Llama-3.1-8B-Lexi-Uncensored-V2"
@@ -143,8 +143,8 @@ async def chat_llama_stream(llm, user_input, history):
     )
 
     sampling_params = SamplingParams(
-        max_tokens=512,
-        temperature=0.2,
+        max_tokens=300,
+        temperature=0.1,
         top_p=0.9,
         top_k=50,
     )
@@ -227,9 +227,9 @@ if __name__ == "__main__":
         model=MODEL_ID,
         gpu_memory_utilization=0.92,
         dtype="bfloat16",
-        max_model_len=2048,
-        enforce_eager=False,
-        # trust_remote_code=True,
+        max_model_len=4096,
+        # enforce_eager=False,
+        trust_remote_code=True,
     )
 
     # -----------------------------
