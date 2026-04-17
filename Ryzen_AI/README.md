@@ -157,9 +157,9 @@ hf download DavidAU/Llama3.3-8B-Instruct-Thinking-Heretic-Uncensored-Claude-4.5-
 ```
 or Gemma 4 4B
 ```bash
-mkdir /app/models/gemma-4-e4b-uncensored
-huggingface-cli download HauhauCS/Gemma-4-E4B-Uncensored-HauhauCS-Aggressive \
-  --local-dir /app/models/gemma-4-e4b-uncensored \
+mkdir /app/models/gemma-4-31B-it-4bit-NVFP4A16-GPTQ
+huggingface-cli download ebircak/gemma-4-31B-it-4bit-NVFP4A16-GPTQ \
+  --local-dir /app/models/gemma-4-31B-it-4bit-NVFP4A16-GPTQ \
   --local-dir-use-symlinks False
 ```
 
