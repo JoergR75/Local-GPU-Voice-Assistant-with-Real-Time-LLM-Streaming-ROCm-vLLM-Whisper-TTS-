@@ -9,6 +9,7 @@
 #   • Gradio          → web UI / chat interface
 #   • OpenAI Whisper  → speech-to-text (STT)
 #   • Piper TTS       → text-to-speech (TTS)
+#   • Gemma 4 - Phu-Hien/gemma_4_dkkd_lora_vllm
 #
 # Features:
 #   • low-latency streaming responses
@@ -48,7 +49,7 @@
 # ---------------------------------------------------------------------------------------------------------------
 # Author:            Joerg Roskowetz
 # First Run:         ~10–20 minutes (model + container download depending on internet speed)
-# Last Updated:      2026-04-09
+# Last Updated:      2026-04-30
 # License:           Personal / Research use
 # ================================================================================================================
 
