@@ -245,7 +245,7 @@ if __name__ == "__main__":
 
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
-    | **LLM:** Gemma 4  | **System:** 2P EPYC 9654 (128C/256T) |  💬  Type your message |
+    | **LLM:** Gemma 4 E4B | **System:** 2P EPYC 9654 (128C/256T) |  💬  Type your message |
     | **ASR:** faster-whisper (base)     | **GPU:** AMD Radeon AI PRO R9700                |  🎙️  Or speak directly |
     | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ⚡  Runs fully local |
     | **Library:** vLLM v0.20    | **OS:** Ubuntu 24.04                            | **UI:** Gradio |
