@@ -119,8 +119,11 @@ async def chat_llama_stream(llm, user_input, history):
     messages = []
 
     system_prompt = (
-        "You are a local AI assistant called Ruby running on AMD Ryzen AI Max 390 hardware. "
-        "The system has 12 Zen5 cores, 24 threads, up to 5 GHz frequency, 12 MB L2 cache, and 64 MB L3 cache.\n\n"
+        "You are a local AI assistant called Ruby running on AMD Radeon AI PRO R9700 Graphics hardware. "
+        "The system features an AMD RDNA 4 GPU with 64 Compute Units, 4096 stream processors, "
+        "128 AI accelerators, and 32 GB GDDR6 VRAM with 640 GB/s memory bandwidth. "
+        "The GPU delivers up to 47.8 TFLOPS FP32, 383 TOPS INT8 AI performance, "
+        "and supports PCIe 5.0 x16 connectivity.\n\n"
         "Your task is to respond in plain, natural language suitable for speech synthesis.\n"
         "Follow these rules:\n"
         "- Keep responses short, clear, and factual.\n"
@@ -236,16 +239,16 @@ if __name__ == "__main__":
     # -----------------------------
     # Gradio UI
     # -----------------------------
-    with gr.Blocks(title="🧠 Qwen3 4B Local AI Agent | AMD ROCm 7") as demo:
+    with gr.Blocks(title="🧠 Gemma 4 Local AI Agent | AMD ROCm 7") as demo:
         gr.Markdown("""
-    # 🤖 Local private Voice Assistant with LLM Streaming (ROCm + vLLM + Whisper + Piper-TTS) on Ryzen AI MAX 390
+    # 🤖 Local private Voice Assistant with LLM Streaming (ROCm + vLLM + Whisper + Piper-TTS) on Radeon AI PRO R9700
 
     |  🧠   **Model Stack** |  🚀 **Hardware & Platform** |  🎤  **How to Use** |
     |------------------|--------------------------|------------------|
-    | **LLM:** Qwen3 4B Instruct  | **System:** AMD Ryzen AI MAX 390 w/ Radeon 8050S |  💬  Type your message |
-    | **ASR:** faster-whisper (base)     | **GPU:** Integrated Radeon 8050S                |  🎙️  Or speak directly |
+    | **LLM:** Gemma 4  | **System:** 2P EPYC 9654 (128C/256T) |  💬  Type your message |
+    | **ASR:** faster-whisper (base)     | **GPU:** AMD Radeon AI PRO R9700                |  🎙️  Or speak directly |
     | **Framework:** PyTorch 2.9.1| **Runtime:** ROCm 7                              |  ⚡  Runs fully local |
-    | **Library:** vLLM v0.18    | **OS:** Ubuntu 24.04                            | **UI:** Gradio |
+    | **Library:** vLLM v0.20    | **OS:** Ubuntu 24.04                            | **UI:** Gradio |
 
     ## 🔗 Resources
     [![ROCm](https://img.shields.io/badge/ROCm-7.2.0-ff6b6b?logo=amd)](https://rocm.docs.amd.com/en/docs-7.2.0/about/release-notes.html)
@@ -258,7 +261,7 @@ if __name__ == "__main__":
 
     """)
 
-        gr.Markdown("Talk or type. Audio runs fully local on one Ryzen(TM) AI MAX 390 w/ Radeon 8050S.")
+        gr.Markdown("Talk or type. Audio runs fully local on one Radeon(TM) AI PRO R9700.")
 
         chatbot = gr.Chatbot(height=200)
         state = gr.State([])
