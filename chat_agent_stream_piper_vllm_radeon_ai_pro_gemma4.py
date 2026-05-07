@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # ================================================================================================================
-# Local GPU Voice Assistant (vLLM + Gradio + Whisper-STT + Piper-TTS) optimized for Ryzen AI MAX 390 w/ Radeon 8050S) 32GB
+# Local GPU Voice Assistant (vLLM + Gradio + Whisper-STT + Piper-TTS) optimized for Radeon AI PRO R9700/R9600D 32GB
 # ================================================================================================================
 # Fully local, GPU-accelerated AI voice assistant with real-time token streaming.
 # Runs entirely offline on AMD ROCm hardware using:
